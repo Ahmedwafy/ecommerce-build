@@ -4,44 +4,24 @@ import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import AddToBasketButton from "@/components/AddToBasketButton";
-// import { FC } from "react";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
-  if (!params?.slug) {
-    notFound();
+  const { slug } = params; //
+
+  if (!slug) {
+    notFound(); // if slug missing
   }
+
   const product = await getProductBySlug(slug);
 
-  // const paramsResolved = await Promise.resolve(params); // make sure Promise is resolved if exist
-  // const slug = paramsResolved.slug; // get slug after resolve the Promise
-  // const product = await getProductBySlug(slug);
-
-  // console.log("Is slug a string?", typeof params.slug === "string");
-  // console.log("Slug:", slug);
-  // console.log("Params:", params);
-  // console.log("Slug:", params.slug);
-
   if (!product) {
-    notFound();
+    notFound(); // if no product found
   }
-
-  console.log(
-    crypto.randomUUID().slice(0, 5) +
-      `>>>>> Rerendered the product page cache for ${slug}`
-  );
 
   const isOutOfStock = product.stock != null && product.stock <= 0;
-  console.log("price:", product.price); // Print Price
-
-  if (typeof product.price === "number") {
-    console.log("Price is a number:", product.price);
-  } else {
-    console.log("Price is not a number", product.price);
-  }
 
   return (
     <div className="container mx-auto px-4 py-8">
