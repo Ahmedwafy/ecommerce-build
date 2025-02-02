@@ -9,16 +9,15 @@ export const dynamic = "force-static";
 export const revalidate = 60;
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
-  //
-  // const { slug } = params;
-
-  const slug = String(params.slug); // make sure slug is string
-  const product = await getProductBySlug(slug);
-  console.log(product);
+  const resolvedParams = await Promise.resolve(params); // تأكد من حل الـ Promise
+  const { slug } = resolvedParams; // استخراج الـ slug
 
   if (!slug) {
     notFound(); // if slug missing
   }
+
+  const product = await getProductBySlug(slug);
+  console.log(product);
 
   if (!product) {
     notFound(); // if no product found
