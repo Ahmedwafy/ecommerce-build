@@ -4,23 +4,26 @@ import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import AddToBasketButton from "@/components/AddToBasketButton";
+// import { FC } from "react";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
 
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
+  const { slug } = params;
   if (!params?.slug) {
     notFound();
   }
-
-  const paramsResolved = await Promise.resolve(params); // make sure Promise is resolved if exist
-  const slug = paramsResolved.slug; // get slug after resolve the Promise
   const product = await getProductBySlug(slug);
 
-  console.log("Is slug a string?", typeof params.slug === "string");
-  console.log("Slug:", slug);
-  console.log("Params:", params);
-  console.log("Slug:", params.slug);
+  // const paramsResolved = await Promise.resolve(params); // make sure Promise is resolved if exist
+  // const slug = paramsResolved.slug; // get slug after resolve the Promise
+  // const product = await getProductBySlug(slug);
+
+  // console.log("Is slug a string?", typeof params.slug === "string");
+  // console.log("Slug:", slug);
+  // console.log("Params:", params);
+  // console.log("Slug:", params.slug);
 
   if (!product) {
     notFound();
