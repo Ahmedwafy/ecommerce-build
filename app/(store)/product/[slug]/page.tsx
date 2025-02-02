@@ -8,7 +8,13 @@ import AddToBasketButton from "@/components/AddToBasketButton";
 export const dynamic = "force-static";
 export const revalidate = 60;
 
-const ProductPage = async ({ params }: { params: { slug: string } }) => {
+// const ProductPage = async ({ params }: { params: { slug: string } }) => {
+
+const ProductPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
   const resolvedParams = await Promise.resolve(params); // تأكد من حل الـ Promise
   const { slug } = resolvedParams; // استخراج الـ slug
 
