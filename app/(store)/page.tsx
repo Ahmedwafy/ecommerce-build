@@ -1,5 +1,3 @@
-// import Image from "next/image";
-// import { Button } from "@/components/ui/button";
 import BlackFridayBanner from "@/components/BlackFridayBanner";
 import ProductsView from "@/components/ProductsView";
 import getAllCategories from "@/sanity/lib/products/getAllCategories";
