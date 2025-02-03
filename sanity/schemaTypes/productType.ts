@@ -1,38 +1,7 @@
 // import { title } from "process";
-import { PortableTextBlock } from "next-sanity";
 import { TrolleyIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 
-interface SanityImage {
-  asset: {
-    _ref: string;
-    _type: "reference";
-    // ... other image properties
-  };
-  hotspot?: {
-    x: number;
-    y: number;
-    height: number;
-    width: number;
-  };
-}
-
-export interface Product {
-  _id: string;
-  _type: "product";
-  name: string; // NOT optional, because it's required in your schema
-  slug: {
-    current: string;
-  };
-  image: SanityImage | null; // Can be null
-  description: PortableTextBlock[];
-  price: number;
-  categories: {
-    _ref: string;
-    _type: "reference";
-  }[];
-  stock: number | null; // Can be null
-}
 export const productType = defineType({
   name: "product",
   title: "Products",

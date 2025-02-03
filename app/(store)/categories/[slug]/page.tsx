@@ -12,8 +12,8 @@ const CategoryPage = async ({ params }: Props) => {
 
   console.log(">>>>>>>>>> params:", params);
   console.log(" >>>>>>>>> slug:", slug);
-  console.log(`type of slug:${typeof slug}`);
-  console.log(`type of params:${typeof params}`);
+  console.log(typeof slug);
+  console.log(typeof params);
 
   const products = await getProductByCategory(slug);
   const categories = await getAllCategories();
