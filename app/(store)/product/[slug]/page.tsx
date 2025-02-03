@@ -1,3 +1,4 @@
+// app/(store)/product/[slug]/page.tsx
 import imageUrl from "@/lib/imageUrl";
 import getProductBySlug from "@/sanity/lib/products/getProductBySlug";
 import { PortableText } from "next-sanity";
@@ -17,18 +18,23 @@ interface Props {
 const ProductPage = async ({ params }: Props) => {
   const { slug } = params;
 
-  console.log(">>>>>>>>>> params:", params);
-  console.log(" >>>>>>>>> slug:", slug);
-  console.log(typeof slug);
-  console.log(typeof params);
+  // console.log(slug);
+  // console.log(params);
 
-  if (!slug) {
+  console.log("Full params object:", params);
+  console.log("Type of params:", typeof params);
+  console.log("Type of slug:", typeof params?.slug);
+
+  if (!params || !params.slug) {
     notFound();
   }
 
-  const product = await getProductBySlug(slug);
-
+  const product = await getProductBySlug(params.slug);
   if (!product) {
+    notFound();
+  }
+
+  if (!slug) {
     notFound();
   }
 

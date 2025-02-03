@@ -1,4 +1,4 @@
-// import { title } from "process";
+// sanity/schemaTypes/productType.ts
 import { TrolleyIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
 

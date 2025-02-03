@@ -1,3 +1,4 @@
+// sanity/lib/products/getProductBySlug
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 
@@ -19,6 +20,7 @@ const getProductBySlug = async (slug: string) => {
 
     // Return the product date or null if not found
     return product.data || null;
+    // return product || null;
   } catch (error) {
     console.error("Error fetching product by ID:", error);
     return null;
