@@ -4,21 +4,31 @@ import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import AddToBasketButton from "@/components/AddToBasketButton";
+// import { PageProps } from "next";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
 
-const ProductPage = async ({ params }: { params: { slug: string } }) => {
+interface Props {
+  params: {
+    slug: string;
+  };
+}
+
+const ProductPage = async ({ params }: Props) => {
   const { slug } = params;
-  console.log("slug:", slug);
-  console.log("Type of slug:", typeof slug);
+  //  use PageProps
+  console.log(" params:", params);
+
+  // const { slug } = params as { slug: string }; //  make sure slug is a string
+  console.log(" slug:", slug);
 
   if (!slug) {
     notFound();
   }
 
   const product = await getProductBySlug(slug);
-  console.log(product);
+  console.log("🔹 Product:", product);
 
   if (!product) {
     notFound();
