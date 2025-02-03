@@ -8,6 +8,7 @@ import getProductByCategory from "@/sanity/lib/products/getProductByCategory";
 //     slug: string;
 //   };
 // }
+
 const CategoryPage = async ({
   params,
 }: {
