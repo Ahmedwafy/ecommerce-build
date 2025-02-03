@@ -15,18 +15,18 @@ interface Props {
 }
 
 const ProductPage = async ({ params }: Props) => {
-  const resolvedParams = await params;
-  const { slug } = resolvedParams;
+  const { slug } = params;
 
-  console.log(" params:", params);
-  console.log(" slug:", slug);
+  console.log(">>>>>>>>>> params:", params);
+  console.log(" >>>>>>>>> slug:", slug);
+  console.log(typeof slug);
+  console.log(typeof params);
 
   if (!slug) {
     notFound();
   }
 
   const product = await getProductBySlug(slug);
-  console.log("🔹 Product:", product);
 
   if (!product) {
     notFound();
