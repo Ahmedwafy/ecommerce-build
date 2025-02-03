@@ -9,34 +9,35 @@ import AddToBasketButton from "@/components/AddToBasketButton";
 export const dynamic = "force-static";
 export const revalidate = 60;
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
+// interface Props {
+//   params: {
+//     slug: string;
+//   };
+// }
+const ProductPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
 
-const ProductPage = async ({ params }: Props) => {
-  const { slug } = params;
+  // console.log("Full params object:", params);
+  // console.log("Type of params:", typeof params);
+  // console.log("Type of slug:", typeof params?.slug);
 
-  // console.log(slug);
-  // console.log(params);
-
-  console.log("Full params object:", params);
-  console.log("Type of params:", typeof params);
-  console.log("Type of slug:", typeof params?.slug);
-
-  if (!params || !params.slug) {
+  if (!params) {
     notFound();
   }
 
-  const product = await getProductBySlug(params.slug);
+  const product = await getProductBySlug(slug);
+
   if (!product) {
     notFound();
   }
 
-  if (!slug) {
-    notFound();
-  }
+  // if (!slug) {
+  //   notFound();
+  // }
 
   const isOutOfStock = product.stock != null && product.stock <= 0;
 
