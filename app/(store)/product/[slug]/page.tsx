@@ -4,7 +4,6 @@ import { PortableText } from "next-sanity";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import AddToBasketButton from "@/components/AddToBasketButton";
-// import { PageProps } from "next";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
@@ -16,11 +15,10 @@ interface Props {
 }
 
 const ProductPage = async ({ params }: Props) => {
-  const { slug } = params;
-  //  use PageProps
-  console.log(" params:", params);
+  const resolvedParams = await params;
+  const { slug } = resolvedParams;
 
-  // const { slug } = params as { slug: string }; //  make sure slug is a string
+  console.log(" params:", params);
   console.log(" slug:", slug);
 
   if (!slug) {
