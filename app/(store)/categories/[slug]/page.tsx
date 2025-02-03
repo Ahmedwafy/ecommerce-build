@@ -3,20 +3,21 @@ import ProductsView from "@/components/ProductsView";
 import getAllCategories from "@/sanity/lib/products/getAllCategories";
 import getProductByCategory from "@/sanity/lib/products/getProductByCategory";
 
-interface Props {
-  params: {
-    slug: string;
-  };
-}
-const CategoryPage = async ({ params }: Props) => {
-  const { slug } = params;
+// interface Props {
+//   params: {
+//     slug: string;
+//   };
+// }
+const CategoryPage = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
 
-  // console.log(slug);
-  // console.log(params);
-
-  console.log("Full params object:", params);
-  console.log("Type of params:", typeof params);
-  console.log("Type of slug:", typeof params?.slug);
+  // console.log("Full params object:", params);
+  // console.log("Type of params:", typeof params);
+  // console.log("Type of slug:", typeof (await params)?.slug);
 
   const products = await getProductByCategory(slug);
   const categories = await getAllCategories();
